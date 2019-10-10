@@ -14,6 +14,7 @@ namespace ConsoleAdventure.Project.Interfaces
     string GetTemplate();
     void AddConnection(IRoom room, string direction);
     string GetCurrentRoom();
+    string GetItem();
 
 
 

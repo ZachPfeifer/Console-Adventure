@@ -70,6 +70,14 @@ namespace ConsoleAdventure.Project.Controllers
         case "cd":
           _gameService.Go(option);
           break;
+        case "t":
+        case "take":
+        case "p":
+        case "pickup":
+          _gameService.TakeItem(option);
+          break;
+
+
         default:
           System.Console.WriteLine("Invalid Command!");
 

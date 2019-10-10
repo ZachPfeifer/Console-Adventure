@@ -64,6 +64,8 @@ Type (L)ook to return back to Current Room.
     {
       Messages.Add(_game.CurrentRoom.GetTemplate());
       Messages.Add(_game.CurrentRoom.GetCurrentRoom());
+      Messages.Add(_game.CurrentRoom.GetItem());
+
     }
 
     public void Quit()
@@ -79,14 +81,23 @@ Type (L)ook to return back to Current Room.
     }
 
 
+    // //Setting up a Player(Name)
     public void Setup(string playerName)
     {
       throw new System.NotImplementedException();
     }
+
     ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
-    public void TakeItem(string itemName)
+    public void TakeItem(string itemName) //TODO making item
     {
-      throw new System.NotImplementedException();
+      if (_game.CurrentRoom.Items.Count == 0)
+      {
+        Messages.Add("No items to Pickup");
+        return;
+      }
+      Messages.Add($"Picking up {_game.CurrentRoom.Items}");
+      _game.CurrentPlayer.Inventory.AddRange(_game.CurrentRoom.Items);
+      _game.CurrentRoom.Items.Clear();
     }
     ///<summary>
     ///No need to Pass a room since Items can only be used in the CurrentRoom

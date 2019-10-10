@@ -62,13 +62,28 @@ namespace ConsoleAdventure.Project.Models
       {
         roomTemplate = $@"
         In the {Name} you see: 
-         {Description}
-         
-        You see an Item in the Room:
-         {Items}";
-      }
+         {Description}";
 
+      }
+      // You see an Item in the Room:
+      //  {Items}";
       return roomTemplate;
+    }
+    public string GetItem()
+    {
+      string itemTemplate = @"
+        *No Items in this Room:
+      ";
+      System.Console.WriteLine(Environment.NewLine);
+      foreach (var i in Items)
+      {
+        itemTemplate = $@"
+        You see an item in the Room:
+          *{i.Name}
+            -{i.Description}
+        ";
+      }
+      return itemTemplate;
     }
 
     // public TakeItem(string item)
