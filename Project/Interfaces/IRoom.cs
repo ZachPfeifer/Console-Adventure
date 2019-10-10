@@ -10,7 +10,13 @@ namespace ConsoleAdventure.Project.Interfaces
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
-    public IRoom Go(string destinationRoom);
+    IRoom Go(string direction);
+    string GetTemplate();
+    void AddConnection(IRoom room, string direction);
+    string GetCurrentRoom();
+
+
+
 
   }
 }

@@ -20,35 +20,55 @@ namespace ConsoleAdventure.Project.Models
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
 
-    public void AddConnection(IRoom room)
+    public void AddConnection(IRoom room, string direction)
     {
-      Exits.Add(room.Name, room);
+      Exits.Add(direction, room);
     }
 
-    public IRoom Go(string destinationRoom)
+    public IRoom Go(string direction)
     {
-      if (Exits.ContainsKey(destinationRoom))
+      if (Exits.ContainsKey(direction))
       {
-        return Exits[destinationRoom];
+        return Exits[direction];
       }
       return this;
     }
 
     public string GetTemplate()
     {
-
       string templateExit = $@"
-
- You Have Moved into another Room and now you See:
+      Directions:
+        You see a door to your 
 ";
+      // string RoomTemplate = $"In the {Name} you see \n {Description} \n";
+
       System.Console.WriteLine(Environment.NewLine);
       foreach (var e in Exits)
       {
-        templateExit += e.Name + Environment.NewLine + e.Description + Environment.NewLine; //FIXME t???
+        templateExit += "         " + e.Key + Environment.NewLine; // + RoomTemplate;
+      }
+      return templateExit;
+    }
+
+
+
+    public string GetCurrentRoom()
+    {
+      string roomTemplate = @"
+      Room Details: 
+      ";
+      System.Console.WriteLine(Environment.NewLine);
+      foreach (var r in Exits)
+      {
+        roomTemplate = $@"
+        In the {Name} you see: 
+         {Description}
+         
+        You see an Item in the Room:
+         {Items}";
       }
 
-
-      return templateExit;
+      return roomTemplate;
     }
 
     // public TakeItem(string item)

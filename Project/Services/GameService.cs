@@ -23,7 +23,7 @@ namespace ConsoleAdventure.Project
       string from = _game.CurrentRoom.Name;
       _game.CurrentRoom = _game.CurrentRoom.Go(direction);
       string to = _game.CurrentRoom.Name;
-
+      System.Console.WriteLine("hi from go service");
 
       //NOTE if failed to go anywhere, stop code execution
       if (from == to)
@@ -62,7 +62,8 @@ Type (L)ook to return back to Current Room.
 
     public void Look()
     {
-
+      Messages.Add(_game.CurrentRoom.GetTemplate());
+      Messages.Add(_game.CurrentRoom.GetCurrentRoom());
     }
 
     public void Quit()

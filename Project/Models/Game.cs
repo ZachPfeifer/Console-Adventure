@@ -5,11 +5,6 @@ namespace ConsoleAdventure.Project.Models
 {
   public class Game : IGame
   {
-    // public Game(IRoom currentRoom, IPlayer currentPlayer)
-    // {
-    //   CurrentRoom = currentRoom;
-    //   CurrentPlayer = currentPlayer;
-    // }
     public Game()
     {
       CurrentPlayer = new Player();
@@ -24,22 +19,22 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       //Rooms
-      Room start = new Room("Living Room", "Seems to be a Living Room (Starting Room)");
-      Room r1 = new Room("Kitchen", "Seems to be the Kitchen");
-      Room r2 = new Room("Dining Room", "Seems to be the Dining Room");
-      Room end = new Room("Garage", "Seems to be the Garage and the Way out is Locked (Final Room)");
+      IRoom start = new Room("Living Room", "Seems to be a Living Room (Starting Room)");
+      IRoom r1 = new Room("Kitchen", "Seems to be the Kitchen");
+      IRoom r2 = new Room("Dining Room", "Seems to be the Dining Room");
+      IRoom end = new Room("Garage", "Seems to be the Garage and the Way out is Locked (Final Room)");
 
       //Linked Rooms
       //Starts Connects
-      start.AddConnection(r1);
-      r1.AddConnection(start);
-      start.AddConnection(r2);
-      r2.AddConnection(start);
-      //End Connects
-      end.AddConnection(r1);
-      r1.AddConnection(end);
-      end.AddConnection(r2);
-      r2.AddConnection(end);
+      start.AddConnection(r1, "north");
+      r1.AddConnection(start, "south");
+      start.AddConnection(r2, "east");
+      r2.AddConnection(start, "west");
+      // //End Connects
+      end.AddConnection(r1, "west");
+      r1.AddConnection(end, "east");
+      end.AddConnection(r2, "south");
+      r2.AddConnection(end, "north");
 
       //NPCs
       //   NPC npc1 = new NPC("NAME", "DISC");
@@ -94,6 +89,8 @@ namespace ConsoleAdventure.Project.Models
 
 
       return templateTitle;
+
     }
+
   }
 }

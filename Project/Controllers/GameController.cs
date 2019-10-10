@@ -61,12 +61,14 @@ namespace ConsoleAdventure.Project.Controllers
         case "l":
         case "look":
         case "see":
+        case "ls":
           _gameService.Look();
           break;
         case "g":
-        case "Go":
+        case "go":
         case "move":
-          _gameService.Go(input);
+        case "cd":
+          _gameService.Go(option);
           break;
         default:
           System.Console.WriteLine("Invalid Command!");
