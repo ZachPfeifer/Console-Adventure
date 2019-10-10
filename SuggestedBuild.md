@@ -1,18 +1,18 @@
 ## Suggested Build Outline:
 
-1. Establish a basic story and map (draw your map out)
-2. Pull down the project and complete initial setup by satisfying all the interfaces ('implement interface')
-3. In Game.Setup() create all your rooms and items
-4. Your rooms will have to have a dictionary of 'exits' where the key is the exit direction and the value is the room that it exits to, add that to the Room class
-5. Back in setup, establish the exits for each room
+1. Establish a basic story and map (draw your map out) ANCHOR 
+2. Pull down the project and complete initial setup by satisfying all the interfaces ('implement interface') ANCHOR
+3. In Game.Setup() create all your rooms and items ANCHOR
+4. Your rooms will have to have a dictionary of 'exits' where the key is the exit direction and the value is the room that it exits to, add that to the Room class ANCHOR
+5. Back in setup, establish the exits for each room ANCHOR
     - Room1.Exits.Add("east", Room2)
     - Room2.Exits.Add("west", Room1)
     - Room2.Exits.Add("north", Room3)
     - Room3.Exits.Add("south", Room2)
-6. Create your items & add them to the Items list within the room they belong to.
-7. At the end of setup be sure to set the CurrentRoom to whichever room the player should start in.
-8. On the room class create a method to handle changing rooms. This method should return a room if one was found at that exit.
-9. Create a similar method on the room for returning Items if the user used the 'take' action.
+6. Create your items & add them to the Items list within the room they belong to. ANCHOR
+7. At the end of setup be sure to set the CurrentRoom to whichever room the player should start in. ANCHOR
+8. On the room class create a method to handle changing rooms. This method should return a room if one was found at that exit. REVIEW 
+9. Create a similar method on the room for returning Items if the user used the 'take' action. TODO 
 10. Back in the Game class, create methods for:
     - Look (returns the current room description)
     -  Quit (changes a global 'playing' variable to false)
