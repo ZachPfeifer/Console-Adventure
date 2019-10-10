@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 
@@ -24,7 +25,7 @@ namespace ConsoleAdventure.Project.Models
       Exits.Add(room.Name, room);
     }
 
-    public IRoom MovingRooms(string destinationRoom)
+    public IRoom Go(string destinationRoom)
     {
       if (Exits.ContainsKey(destinationRoom))
       {
@@ -33,9 +34,26 @@ namespace ConsoleAdventure.Project.Models
       return this;
     }
 
-    public TakeItem(string item)
+    public string GetTemplate()
     {
 
+      string templateExit = $@"
+
+ You Have Moved into another Room and now you See:
+";
+      System.Console.WriteLine(Environment.NewLine);
+      foreach (var e in Exits)
+      {
+        templateExit += e.Name + Environment.NewLine + e.Description + Environment.NewLine; //FIXME t???
+      }
+
+
+      return templateExit;
     }
+
+    // public TakeItem(string item)
+    // {
+
+    // }
   }
 }

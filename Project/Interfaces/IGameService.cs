@@ -17,14 +17,10 @@ namespace ConsoleAdventure.Project.Interfaces
     void Quit()
     {
       //   System.Environment.Exit(1); 
-      Environment.Exit(0);
     }
 
     //Should display a list of commands to the console
-    void Help()
-    {
-
-    }
+    void Help();
 
     //Validate CurrentRoom.Exits contains the desired direction
     //if it does change the CurrentRoom
