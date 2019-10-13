@@ -46,9 +46,9 @@ Type (Go) then (Direction) to enter another Room.
 
 Type (L)ook to see content in the Room.
 
-Type (I)nventory to veiw your picked up Items.
-
 Type (P)ickup to put items in your Inventory.
+
+Type (I)nventory to veiw your picked up Items.
 
 Type (Q)uit to Exit Game.
 
@@ -130,8 +130,53 @@ Type (B)ack to return to the previous Room.
     ///</summary>
     public void UseItem(string itemName)
     {
-      throw new System.NotImplementedException();
+      for (int i = 0; i < _game.CurrentPlayer.Inventory.Count; i++)
+      {
+        var playeritem = _game.CurrentPlayer.Inventory[i];
+        var garage = _game.CurrentRoom.Name;
+        if (playeritem.Name.ToLower() == itemName && itemName == "passcode")
+        {
+          _game.CurrentRoom.Name = "garage";
+          _game.CurrentPlayer.Inventory.Remove(playeritem);
+          Messages.Add($" Used Passcode to Unlock {garage} to the outside world! ");
+          return;
+        }
+        else if (playeritem.Name.ToLower() == itemName && itemName != "passcode")
+        {
+          // _game.CurrentRoom != "garage";
+          Messages.Add("Cannot use Passcode here.Try again in another Room.");
+          return;
+        }
+        else
+        {
+          Messages.Add("Unkown Command");
+          return;
+        }
+      }
     }
+    // private void UnloadCargo()
+    // {
+    //   int deliveries = 0;
+    //   int profits = 0;
+    //   _game.Plane.Cargo.RemoveAll(cargo =>
+    //   {
+    //     if (cargo.Destination == _game.CurrentAirport)
+    //     {
+    //       _game.Plane.AccountBalance += cargo.Reward;
+    //       deliveries++;
+    //       profits += cargo.Reward;
+    //       return true;
+    //     }
+    //     return false;
+    //   });
+    //   if (deliveries == 0)
+    //   {
+    //     Messages.Add("No Packages to Deliver");
+    //     return;
+    //   }
+    //   Messages.Add($"{deliveries} package(s) delivered, for a profit of {profits}");
+    // }
+
 
     public string GetTitle()
     {

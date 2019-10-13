@@ -77,7 +77,12 @@ namespace ConsoleAdventure.Project.Controllers
         case "pickup":
           _gameService.TakeItem(option);
           break;
-
+        case "u":
+        case "use":
+          // case "s":
+          // case "shoot":
+          _gameService.UseItem(option);
+          break;
 
         default:
           System.Console.WriteLine("Invalid Command!");
