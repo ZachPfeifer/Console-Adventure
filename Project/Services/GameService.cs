@@ -42,22 +42,26 @@ namespace ConsoleAdventure.Project
 
         Welcome to the Help Menu:
 
-Type (N)ext Room to enter the next Room.
+Type (Go) then (Direction) to enter another Room. 
 
-Type (B)ack to return to the previous Room.
+Type (L)ook to see content in the Room.
+
+Type (I)nventory to veiw your picked up Items.
+
+Type (P)ickup to put items in your Inventory.
 
 Type (Q)uit to Exit Game.
 
 Type (R)eset to Restart Game.
 
-Type (L)ook to return back to Current Room.
+Type (B)ack to return to the previous Room.
 ");
       }
     }
 
     public void Inventory()
     {
-      throw new System.NotImplementedException();
+      Messages.Add(_game.CurrentPlayer.GetInventory());
     }
 
     public void Look()
@@ -92,12 +96,32 @@ Type (L)ook to return back to Current Room.
     {
       if (_game.CurrentRoom.Items.Count == 0)
       {
-        Messages.Add("No items to Pickup");
+        Messages.Add("*No items to Pickup*");
         return;
       }
-      Messages.Add($"Picking up {_game.CurrentRoom.Items}");
-      _game.CurrentPlayer.Inventory.AddRange(_game.CurrentRoom.Items);
-      _game.CurrentRoom.Items.Clear();
+      // else (_game.CurrentRoom.Items.Name.ToLower() == itemName) 
+      //   {
+      //     Messages.Add($"Picking up {_game.CurrentRoom.Items}");
+      //     _game.CurrentPlayer.Inventory.AddRange(_game.CurrentRoom.Items);
+      //     Messages.Add($"Successfully Picked up {_game.CurrentRoom.Items}");
+      //     _game.CurrentRoom.Items.Clear();
+      //     return;
+      //   }
+      else
+      {
+        for (int i = 0; i < _game.CurrentRoom.Items.Count; i++)
+        {
+          var prop = _game.CurrentRoom.Items[i];
+          if (prop.Name.ToLower() == itemName)
+          {
+            Messages.Add($"Picking up {prop.Name}");
+            _game.CurrentPlayer.Inventory.Add(prop);
+            Messages.Add($"Successfully Picked up {prop.Name}");
+            _game.CurrentRoom.Items.Clear();
+            return;
+          }
+        }
+      }
     }
     ///<summary>
     ///No need to Pass a room since Items can only be used in the CurrentRoom

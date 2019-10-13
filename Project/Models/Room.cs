@@ -72,7 +72,7 @@ namespace ConsoleAdventure.Project.Models
     public string GetItem()
     {
       string itemTemplate = @"
-        *No Items in this Room:
+        *No Items in this Room*
       ";
       System.Console.WriteLine(Environment.NewLine);
       foreach (var i in Items)
@@ -85,6 +85,24 @@ namespace ConsoleAdventure.Project.Models
       }
       return itemTemplate;
     }
+
+    // public string GetInventory()
+    // {
+    //   string itemTemplate = @"
+    //     *No Items in Inventory*
+    //   ";
+    //   System.Console.WriteLine(Environment.NewLine);
+    //   foreach (var i in Items)
+    //   {
+    //     itemTemplate = $@"
+    //     Items in your Inventory:
+    //       *{i.Name}
+    //         -{i.Description}
+    //     ";
+    //   }
+    //   return itemTemplate;
+    // }
+
 
     // public TakeItem(string item)
     // {

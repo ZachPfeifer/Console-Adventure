@@ -50,7 +50,8 @@ namespace ConsoleAdventure.Project.Controllers
         case "v":
         case "veiw":
         case "i":
-        case "item":
+        case "items":
+        case "inventory":
           _gameService.Inventory();
           break;
         case "h":

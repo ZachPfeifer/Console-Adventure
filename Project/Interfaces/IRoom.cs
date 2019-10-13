@@ -15,6 +15,7 @@ namespace ConsoleAdventure.Project.Interfaces
     void AddConnection(IRoom room, string direction);
     string GetCurrentRoom();
     string GetItem();
+    // string GetInventory();
 
 
 
