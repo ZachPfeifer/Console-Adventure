@@ -130,29 +130,63 @@ Type (B)ack to return to the previous Room.
     ///</summary>
     public void UseItem(string itemName)
     {
+      IRoom room = _game.CurrentRoom;
+
+      // if (room.Name == "Garage")// && _game.CurrentPlayer.Inventory == "passcode") //FIXME trash this??  do i need?
+      // {
+
+
+
       for (int i = 0; i < _game.CurrentPlayer.Inventory.Count; i++)
       {
         var playeritem = _game.CurrentPlayer.Inventory[i];
-        var garage = _game.CurrentRoom.Name;
-        if (playeritem.Name.ToLower() == itemName && itemName == "passcode")
+        // var room = _game.CurrentRoom.Name;
+        if (playeritem.Name.ToLower() == itemName && itemName == "passcode" && room.Name != "Garage")
         {
-          _game.CurrentRoom.Name = "garage";
+          // _game.CurrentRoom != room.Name;
+          if (_game.CurrentRoom != playeritem.UseItem)
+            Messages.Add("Cannot use Passcode here.Try again in another Room.");
+          return;
+        }
+        else if (playeritem.Name.ToLower() == itemName && itemName == "passcode" && room.Name == "Garage")
+        {
+          _game.CurrentRoom.Name = "Garage";
+          _game.CurrentRoom = playeritem.UseItem;
           _game.CurrentPlayer.Inventory.Remove(playeritem);
-          Messages.Add($" Used Passcode to Unlock {garage} to the outside world! ");
-          return;
-        }
-        else if (playeritem.Name.ToLower() == itemName && itemName != "passcode")
-        {
-          // _game.CurrentRoom != "garage";
-          Messages.Add("Cannot use Passcode here.Try again in another Room.");
-          return;
-        }
-        else
-        {
-          Messages.Add("Unkown Command");
+          System.Console.Clear();
+          Messages.Add($@" Used Passcode to unlock {room.Name} to the outside world! 
+          You WIN
+           Type (R)estart or (Q)uit");
           return;
         }
       }
+      {
+        Messages.Add("Unkown Command");
+      }
+      // }
+      // }
+      // else if (room.Name == "Living Room") //FIXME Trash this??
+      // {
+      //   for (int i = 0; i < _game.CurrentPlayer.Inventory.Count; i++)
+      //   {
+      //     var playeritem = _game.CurrentPlayer.Inventory[i];
+      //     if (playeritem.Name.ToLower() == itemName && itemName == "gun")// && room == "Garage")
+      //     {
+      //       _game.CurrentRoom.Name = "Living Room";
+      //       _game.CurrentRoom = playeritem.UseItem;
+      //       // _game.CurrentPlayer.Inventory.Remove(playeritem);
+      //       Messages.Add($@"You used {playeritem.Name} in {_game.CurrentRoom.Name}");
+      //       return;
+      //     }
+      //     else
+      //     {
+
+      //       Messages.Add("Unkown Command");
+      //       return;
+      //     }
+      //   }
+
+      // }
     }
     // private void UnloadCargo()
     // {

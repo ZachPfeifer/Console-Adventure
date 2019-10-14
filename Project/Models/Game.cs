@@ -43,14 +43,14 @@ namespace ConsoleAdventure.Project.Models
       // start.NPCs.add(npc1);
 
       //Create Items
-      Item i1 = new Item("Gun", "Use to Shoot things");
-      Item i2 = new Item("Passcode", "Use on door to Garage Door");
+      Item i1 = new Item("Gun", "Use to Shoot things", start);
+      Item i2 = new Item("Passcode", "Use on door to Garage Door", end);
 
       //Add Items to Room
       start.Items.Add(i1);
       end.Items.Add(i2);
 
-      //Staring Room
+      //Starting Room
       CurrentRoom = start;
     }
 

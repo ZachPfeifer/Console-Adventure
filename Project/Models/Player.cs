@@ -18,13 +18,12 @@ namespace ConsoleAdventure.Project.Models
     public string GetInventory()
     {
       string itemTemplate = @"
-      *No Items in Inventory*
+      Items in your Inventory:
     ";
       System.Console.WriteLine(Environment.NewLine);
       foreach (var i in Inventory)
       {
-        itemTemplate = $@"
-      Items in your Inventory:
+        itemTemplate += $@"
         *{i.Name}
           -{i.Description}
       ";
