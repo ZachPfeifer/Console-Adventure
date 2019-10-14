@@ -81,14 +81,19 @@ Type (B)ack to return to the previous Room.
     ///</summary>
     public void Reset()
     {
-      throw new System.NotImplementedException();
+      // System.Diagnostics.Process.Start(Environment.);
+      // System.Windows.Forms.Application.Restart();
+      // Environment.Exit(0);
+      // var info = new System.Diagnostics.ProcessStartInfo(Environment.GetCommandLineArgs()[0]);// System.Diagnostics.Process.Start(info);
+      _game.CurrentPlayer.Inventory.Clear();
+      _game.Setup();
+      Messages.Add("New Game+");
     }
-
 
     // //Setting up a Player(Name)
     public void Setup(string playerName)
     {
-      throw new System.NotImplementedException();
+      _game.CurrentPlayer.Name = playerName;
     }
 
     ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>

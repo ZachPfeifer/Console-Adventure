@@ -84,6 +84,11 @@ namespace ConsoleAdventure.Project.Controllers
           _gameService.UseItem(option);
           break;
 
+        case "r":
+        case "restart":
+          _gameService.Reset();
+          break;
+
         default:
           System.Console.WriteLine("Invalid Command!");
 
